@@ -1,5 +1,5 @@
 const { AuthName, AuthEmail, AuthPassword } = require('../Regex/Regex');
-const Schema = require('../Module/Schema')
+
 
 
 exports.AuthUser = async (req, res, next) => {
