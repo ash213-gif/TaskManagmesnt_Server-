@@ -25,9 +25,10 @@ exports.UserCreate = async (req, res) => {
 
         const CreateData = await Schema.create(Data);
         const TempDta = {
+            Userid:CreateData._id,
             fullName: CreateData.FullName,
-            fullName: CreateData.Email,
-            fullName: CreateData._id
+            emil: CreateData.Email,
+            password: CreateData.Passord
         }
         return res.status(201).send({ data: TempDta, status: true, msg: 'Registration Successfully' })
     }
@@ -77,9 +78,9 @@ exports.UserLogin = async (req, res) => {
         const bcryptPasswordCheck = await bcrypt.compare(Passord, CheckLogin.Passord)
         if (!bcryptPasswordCheck) return res.status(404).send({ status: false, msg: 'Wrong Password!' })
 
-        const token = await jwt.sign({ UserId: CheckLogin_id }, process.env.JWT_Secret_Key, { expiresIn: '12h' })
+        const token = await jwt.sign({ UserId: CheckLogin._id }, process.env.JWT_Secret_Key, { expiresIn: '12h' })
 
-        return res.status(200).send({ status: true, message: 'Login Successsfully ' })
+        return res.status(200).send({ status: true, token:token,   message: 'Login Successsfully ' })
     } catch (e) { return res.status(500).send({ status: false, msg: e.message }) }
 
 }
