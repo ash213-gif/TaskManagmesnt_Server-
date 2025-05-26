@@ -25,7 +25,7 @@ exports.UserCreate = async (req, res) => {
 
         const CreateData = await Schema.create(Data);
         const TempDta = {
-            Userid:CreateData._id,
+            Userid: CreateData._id,
             fullName: CreateData.FullName,
             emil: CreateData.Email,
             password: CreateData.Passord
@@ -41,7 +41,8 @@ exports.UserCreate = async (req, res) => {
 
 exports.VerifyOtp = async (req, res) => {
     try {
-        const id = req.params._id;
+        const id = req.params.Userid;
+            
         const userotp = req.body.Otp
 
         if (!userotp) return res.status(400).send({ status: true, message: 'please plovide otp ' })
@@ -80,8 +81,20 @@ exports.UserLogin = async (req, res) => {
 
         const token = await jwt.sign({ UserId: CheckLogin._id }, process.env.JWT_Secret_Key, { expiresIn: '12h' })
 
-        return res.status(200).send({ status: true, token:token,   message: 'Login Successsfully ' })
+        return res.status(200).send({ status: true, token: token, message: 'Login Successsfully ' })
     } catch (e) { return res.status(500).send({ status: false, msg: e.message }) }
 
 }
 
+
+
+exports.Userget = async (req, res) => {
+    try {
+        const userData = await User.findOne(); // You might want to fetch a specific user's data
+        res.send(userData);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ message: 'Error fetching user data' });
+    }
+
+}

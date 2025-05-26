@@ -1,20 +1,23 @@
-const User = require('../Module/Schema')
-const Task =require('../Module/TaskSchema')
+const mongoose = require('mongoose');
+const TaskSchema = require('../Module/TaskSchema')
 
-exports.Createtask= async  (req,res)=>{
-    try{
-        const { title, description } = req.body;
-        
-       const {_id}=req.headers;
-        const newTask = new Task({ title: title, description: description });
-        const saveTask = await newTask.save()
-        const taskId = saveTask._id
-        await User.findByIdAndUpdate(_id, { $push: { tasks: taskId._id } });
-        res.status(200).json({ message: "Task Created" });
+exports.Createtask = async (req, res) => {
+    try {
+        const Task = req.body;
+        const { title, description } = Task;
+
+        if (!title || !description) {
+            return res.status(400).send({ status: false, message : "Title and description are required" });
+        }
+
+        const Tasksave = await  TaskSchema.create(Task)
+        console.log(Tasksave);
+        return res.status(201).send({ status: true, message : "Task created successfully", data: Tasksave });
+
     }
-    catch(e){
-        
-        return res.status(500).send({ status:false ,msg:e.message })
+    catch (e) {
+
+        return res.status(500).send({ status: false, msg: e.message })
     }
 
 }

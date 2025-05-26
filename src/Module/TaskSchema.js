@@ -1,12 +1,12 @@
 const mongoose=require('mongoose')
 
-const TaskSchema= new mongoose.Schema({
-    title: {type:String , required:true , trim:true },
-    description: {type:String , required:true , trim:true },
-    Complete: {type:Boolean , default :false   , trim:true },
-    Incomplete: {type:Boolean , default :false , trim:true },
+const TaskSchema=  mongoose.Schema({
+    title: {type:String , required:true ,  unique: false ,  trim:true },
+    description: {type:String , required:true ,  unique: false , trim:true },
+    IsComplete: {type:Boolean ,  unique: false ,default :false    },
+  
     
 
 }) 
 
-module.exports= mongoose.model(' TaskData',TaskSchema)
+module.exports= mongoose.model('TaskData',TaskSchema)

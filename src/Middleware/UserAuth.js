@@ -1,13 +1,12 @@
 const { AuthName, AuthEmail, AuthPassword } = require('../Regex/Regex');
 
-
-
 exports.AuthUser = async (req, res, next) => {
     try {
         const Data = req.body;
         const { FullName, Email, Passord } = Data;
 
         if (!Data) { return res.status(400).send({ status: false, message: 'Please Provide data First ' }) }
+
         if (!FullName) { return res.status(400).send({ status: false, message: 'Please Provide a FullNmae ' }) }
         if (!AuthName(FullName)) { return res.status(400).send({ status: false, message: 'Please Provide a  Valid FullNmae ' }) }
 
