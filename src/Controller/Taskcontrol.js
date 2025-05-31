@@ -3,7 +3,10 @@ const TaskSchema = require('../Module/TaskSchema')
 
 exports.Createtask = async (req, res) => {
     try {
+        const id = req.params.UserId
+        console.log(id);
         const Task = req.body;
+        
         const { title, description } = Task;
 
         if (!title || !description) {

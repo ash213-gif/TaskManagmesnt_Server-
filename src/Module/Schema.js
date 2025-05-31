@@ -9,7 +9,7 @@ const Schema = new mongoose.Schema({
     IsDelete: { type: Boolean, trim: true, default: false },
     IsVerify: { type: Boolean, trim: true, default: false },
     IsActive: { type: Boolean, trim: true, default: true },
-    tasks: [{ type: mongoose.Types.ObjectId  , ref: 'task' }]
+   
 })
 
 module.exports = mongoose.model(' ServerData', Schema)
