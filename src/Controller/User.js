@@ -90,7 +90,7 @@ exports.UserLogin = async (req, res) => {
 
     const token = await jwt.sign({ UserId: CheckLogin._id }, process.env.JWT_Secret_Key, { expiresIn: '12h' });
 
-    return res.status(200).send({ UserId: CheckLogin._id, status: true, token: token, msg: 'Login Successfully' });
+    return res.status(200).send({ role: CheckLogin.role, UserId: CheckLogin._id, status: true, token: token, msg: 'Login Successfully' });
   } catch (e) {
     return res.status(500).send({ status: false, msg: e.message });
   }
@@ -100,16 +100,16 @@ exports.UserLogin = async (req, res) => {
 exports.Userget = async (req, res) => {
   try {
     const id = req.params.Userid;
-    
+
     const userData = await Schema.findById(id);
 
     if (!userData) {
       return res.status(404).send({ status: false, msg: 'User not found' });
     }
 
-    return res.status(200).send({ Data :userData, status: true , msg:'send data successfully ' }) ; // OK response with user data
+    return res.status(200).send({ Data: userData, status: true, msg: 'send data successfully ' }); // OK response with user data
   } catch (e) {
-    res.status(500).send({   status: false, msg: e.message });
+    res.status(500).send({ status: false, msg: e.message });
   }
 };
 

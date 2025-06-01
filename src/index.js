@@ -17,7 +17,7 @@ mongoose.connect(process.env.MongoDB)
     .catch((e) => { console.log(e); })
 
 app.use('/', route);
-app.use('/api', routes);
+app.use('/admin', routes);
 
 
 app.listen(port, () => console.log(`Server is Running on port ${port}`))

@@ -5,16 +5,16 @@ exports.AuthUser = async (req, res, next) => {
         const Data = req.body;
         const { FullName, Email, Passord } = Data;
 
-        if (!Data) { return res.status(400).send({ status: false, message: 'Please Provide data First ' }) }
+        if (!Data) { return res.status(400).send({ status: false, msg: 'Please Provide data First ' }) }
 
-        if (!FullName) { return res.status(400).send({ status: false, message: 'Please Provide a FullNmae ' }) }
-        if (!AuthName(FullName)) { return res.status(400).send({ status: false, message: 'Please Provide a  Valid FullNmae ' }) }
+        if (!FullName) { return res.status(400).send({ status: false, msg: 'Please Provide a FullNmae ' }) }
+        if (!AuthName(FullName)) { return res.status(400).send({ status: false, msg: 'Please Provide a  Valid FullNmae ' }) }
 
-        if (!Email) { return res.status(400).send({ status: false, message: 'Please Provide a Email ' }) }
-        if (!AuthEmail(Email)) { return res.status(400).send({ status: false, message: 'Please Provide a  ValidEmail ' }) }
+        if (!Email) { return res.status(400).send({ status: false, msg: 'Please Provide a Email ' }) }
+        if (!AuthEmail(Email)) { return res.status(400).send({ status: false, msg: 'Please Provide a  ValidEmail ' }) }
 
-        if (!Passord) { return res.status(400).send({ status: false, message: 'Please Provide a Passord ' }) }
-        if (!AuthPassword(Passord)) { return res.status(400).send({ status: false, message: 'Please Provide a  ValidPassord ' }) }
+        if (!Passord) { return res.status(400).send({ status: false, msg: 'Please Provide a Passord ' }) }
+        if (!AuthPassword(Passord)) { return res.status(400).send({ status: false, msg: 'Please Provide a  ValidPassord ' }) }
 
         next()
     }
@@ -27,13 +27,13 @@ exports.AuthLogin = async (req, res, next) => {
         const Data = req.body;
         const { Email, Passord } = Data;
 
-        if (!Data) { return res.status(400).send({ status: false, message: 'Please Provide data First ' }) }
-       
-        if (!Email) { return res.status(400).send({ status: false, message: 'Please Provide a Email ' }) }
-        if (!AuthEmail(Email)) { return res.status(400).send({ status: false, message: 'Please Provide a  ValidEmail ' }) }
+        if (!Data) { return res.status(400).send({ status: false, msg: 'Please Provide data First ' }) }
 
-        if (!Passord) { return res.status(400).send({ status: false, message: 'Please Provide a Passord ' }) }
-        if (!AuthPassword(Passord)) { return res.status(400).send({ status: false, message: 'Please Provide a  ValidPassord ' }) }
+        if (!Email) { return res.status(400).send({ status: false, msg: 'Please Provide a Email ' }) }
+        if (!AuthEmail(Email)) { return res.status(400).send({ status: false, msg: 'Please Provide a  ValidEmail ' }) }
+
+        if (!Passord) { return res.status(400).send({ status: false, msg: 'Please Provide a Passord ' }) }
+        if (!AuthPassword(Passord)) { return res.status(400).send({ status: false, msg: 'Please Provide a  ValidPassord ' }) }
 
         next()
     }
