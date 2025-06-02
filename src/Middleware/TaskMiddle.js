@@ -7,10 +7,11 @@ const { User }=require('../Module/Schema')
 exports.authenticate = async (req, res, next) => {
     try {
         const token = req.header('Authorization').replace('Bearer ', '');
-        const decoded = jwt.verify(token, JWT_Secret_Key );
+        // const  JWT_Secret_Key= process.env.JWT_Secret_Key
+        const decoded = jwt.verify(token, process.env.JWT_Secret_Key );
         const user = await User.findOne({ _id: decoded._id });
         if (!user) {
-            throw new Error();
+            throw new Error(); 
         }
         req.user = user;
         next();
