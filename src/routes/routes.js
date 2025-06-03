@@ -11,4 +11,8 @@ route.get('/getUser/:Userid', Userget )
 
 route.put('/Userupdate/:Userid' ,Userupdate )
 
+route.get('/', (req, res) => {
+  res.send('User routes are working!');
+});
+
 module.exports=route;
