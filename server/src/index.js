@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const port = 3030;
+const port =  process.env.port ||3030 ;
 
 mongoose.connect(process.env.MongoDB)
     .then(() => console.log('Mongoose is Connected...'))
