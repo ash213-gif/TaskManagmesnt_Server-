@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 
 app.use(cors({
-  origin: '*', // Ya: origin: 'https://your-vercel-app.vercel.app'
+  origin: 'https://task-managment-front-virid.vercel.app', 
   credentials: true
 }));
 
